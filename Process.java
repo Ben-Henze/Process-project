@@ -93,6 +93,81 @@ public class Process {
 
     }
 
+    public int lengthOfPath(List<Activity> path) {
+        int length = 0;
+        for (Activity a : path) {
+            length = length + a.getTime();
+        }
+        return length;
+    }
+
+    // public List<Activity> findCriticalPath() {
+    //     List<Activity> cp = new ArrayList<Activity>();
+    //     findCPHelper(start, cp);
+    //     return cp;
+    // }
+
+    // public List<Activity> findCPHelper(Activity a, List<Activity> p) {
+    //     if (a.getNext().size() > 1) {
+    //         int maxLength = 0;
+    //         Activity next = null;
+    //         for (Activity i : a.getNext()) {
+    //             if(lengthOfPath(findCPHelper(i, p)) > maxLength) {
+    //                 next = i;
+    //             }
+    //             p.add(a);
+    //             findCPHelper(next, p);
+    //         }
+    //     }
+    //     if (a != end) {
+    //         p.add(a);
+    //         findCPHelper(a.getNext().get(0), p);
+    //     }
+    //     p.add(a);
+    //     return p;
+    // }
+
+    public List<Activity> findLongestPath(Activity start) {
+        List<Activity> path = new ArrayList<Activity>();
+        List<Activity> longestPath = new ArrayList<Activity>();
+        int maxLength = 0;
+        findLongestPathHelper(start, path, longestPath, maxLength);
+        return longestPath;
+    }
+    
+    public void findLongestPathHelper(Activity current, List<Activity> path, List<Activity> longestPath, int maxLength) {
+        path.add(current);
+        if (current.getNext().size() > 0) {
+            for (Activity next : current.getNext()) {
+                if (!path.contains(next)) {
+                    findLongestPathHelper(next, path, longestPath, maxLength);
+                }
+            }
+        }
+    
+        if (lengthOfPath(path)  > maxLength) {
+            maxLength = lengthOfPath(path);
+            longestPath.clear();
+            longestPath.addAll(path);
+        }
+    
+        path.remove(current);
+       
+    }
+
+    public double completableInT(double t) {
+        double capRate = resources.get(0).getCapRate();
+        for (int i =0;i < resources.size(); i++) {
+            if (resources.get(i).getCapRate() < capRate) {  //finds the bottleneck resource
+                capRate = resources.get(i).getCapRate();
+            }
+        }
+
+
+
+        return 0;
+    }
+
     //REQUIRES that n exists
     public Activity findActivity(String n) {
         Activity result = null;

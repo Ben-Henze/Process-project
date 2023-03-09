@@ -6,7 +6,7 @@ public class Resource {
     String name;
     List<Activity> activities;
     int unitLoad;
-    int capacityRate;
+    double capacityRate;
 
     public Resource(String name) {
         this.activities = new ArrayList<>();
@@ -21,20 +21,26 @@ public class Resource {
 
     public void initializeCapRate() {
         this.initializeUnitLoad();
-        this.capacityRate = (1 / this.unitLoad);
+        this.capacityRate = 1.0 / ((double)this.unitLoad / 60.0);
     }
 
     public void initializeUnitLoad() {
         int count = 0;
         for (int i =0; i < this.activities.size(); i++){
-            count =+ activities.get(i).getTime();
+            count = count + activities.get(i).getTime();
         }
-        unitLoad = count;
+        this.unitLoad = count;
     }
 
     public String getName() {
         return this.name;
     }
+
+    public double getCapRate() {
+        return capacityRate;
+    }
+
+
 
 
 }

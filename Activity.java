@@ -34,4 +34,8 @@ public class Activity {
     public void addNext(Activity a) {
         this.next.add(a);
     }
+
+    public List<Activity> getNext() {
+        return this.next;
+    }
 }
