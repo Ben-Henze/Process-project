@@ -3,14 +3,16 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Resource {
+    String name;
     List<Activity> activities;
     int unitLoad;
     int capacityRate;
 
-    public Resource() {
+    public Resource(String name) {
         this.activities = new ArrayList<>();
         this.unitLoad = 0;
         this.capacityRate = 0;
+        this.name = name;
     }
 
     public void addActivity(Activity a) {
@@ -28,6 +30,10 @@ public class Resource {
             count =+ activities.get(i).getTime();
         }
         unitLoad = count;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 

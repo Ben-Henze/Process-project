@@ -1,0 +1,9 @@
+A,,BC,20,Worker 1
+B,A,D,60,Worker 2
+C,A,E,100,Worker 2
+D,B,E,30,Worker 1
+E,CD,F,20,Worker 2
+F,E,GH,10,Worker 1
+G,F,I,20,Worker 1
+H,F,I,10,Worker 2
+I,GH,,30,Worker 2
